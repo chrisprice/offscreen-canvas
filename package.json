@@ -1,0 +1,12 @@
+{
+  "name": "offscreen-canvas",
+  "version": "1.0.0",
+  "description": "Examples of chart rendering using offscreen canvas",
+  "author": "Chris Price",
+  "license": "MIT",
+  "homepage": "https://github.com/chrisprice/offscreen-canvas",
+  "dependencies": {
+    "d3": "^5.15.0",
+    "d3fc": "^14.1.30"
+  }
+}

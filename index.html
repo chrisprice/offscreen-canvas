@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script src="./node_modules/@d3fc/d3fc-element/build/d3fc-element.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        d3fc-group {
+            flex: auto;
+            display: flex;
+        }
+
+        d3fc-canvas {
+            flex: auto;
+        }
+
+        #status {
+            padding: 1em;
+            font: monospace;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <d3fc-group auto-resize>
+        <d3fc-canvas></d3fc-canvas>
+    </d3fc-group>
+    <div id="status">
+        <p>
+            Point count:
+            <a href="?10000">10,000 points</a> |
+            <a href="?100000">100,000 points</a> |
+            <a href="?1000000">1,000,000 points</a>
+        </p>
+        <p>
+            Timestamp: <span id="timestamp"></span>
+        </p>
+        <button id="alert">Stop main thread</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
