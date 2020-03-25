@@ -1,3 +1,5 @@
+postMessage('Worker initialised. Importing scripts...');
+
 importScripts(
     './node_modules/d3-array/dist/d3-array.js',
     './node_modules/d3-collection/dist/d3-collection.js',
@@ -16,6 +18,8 @@ importScripts(
     './node_modules/@d3fc/d3fc-webgl/build/d3fc-webgl.js'
 );
 
+postMessage('Scripts imported. Generating data...');
+
 const randomNormal = d3.randomNormal(0, 1);
 const randomLogNormal = d3.randomLogNormal();
 
@@ -24,6 +28,8 @@ const data = Array.from({ length: parseInt(location.hash.substring(1)) }, () => 
     y: randomNormal(),
     size: randomLogNormal() * 10
 }));
+
+postMessage('Data generated. Configuring rendering...');
 
 const xScale = d3.scaleLinear().domain([-5, 5]);
 
@@ -54,16 +60,20 @@ series.decorate(program => {
     fillColor(program);
 });
 
+postMessage('Rendering configured. Awaiting canvas...');
+
 function render() {
     const ease = 5 * (0.51 + 0.49 * Math.sin(Date.now() / 1e3));
     xScale.domain([-ease, ease]);
     yScale.domain([-ease, ease]);
     series(data);
     requestAnimationFrame(render);
+    postMessage('frame');
 }
 
 addEventListener('message', ({ data: { offscreenCanvas, width, height } }) => {
     if (offscreenCanvas != null) {
+        postMessage('Canvas received. Rendering...');
         const gl = offscreenCanvas.getContext('webgl');
         series.context(gl);
         render();

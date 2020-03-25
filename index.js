@@ -15,6 +15,13 @@ canvasContainer.addEventListener('measure', ({ detail }) => {
         }
         const offscreenCanvas = canvas.transferControlToOffscreen();
         worker.postMessage({ offscreenCanvas }, [offscreenCanvas]);
+        worker.addEventListener('message', ({ data }) => {
+            if (data !== 'frame') {
+                document.querySelector('#loading>p').innerText = data;
+            } else {
+                document.querySelector('#loading').style.display = 'none';
+            }
+        });
     }
     const { width, height } = detail;
     worker.postMessage({ width, height });
