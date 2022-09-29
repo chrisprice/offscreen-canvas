@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://github.com/chrisprice/offscreen-canvas",
   "dependencies": {
-    "d3": "^5.15.0",
-    "d3fc": "^14.2.2"
+    "d3": "^7.6.1",
+    "d3fc": "^15.2.6"
   }
 }
